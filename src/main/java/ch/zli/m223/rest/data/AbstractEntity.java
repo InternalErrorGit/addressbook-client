@@ -17,6 +17,7 @@ public abstract class AbstractEntity<T extends AbstractEntity<T>> {
     protected LocalDateTime createDate;
     protected LocalDateTime updateDate;
 
+
     public AbstractEntity() {
         createDate = LocalDateTime.now();
         updateDate = LocalDateTime.now();

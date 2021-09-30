@@ -23,6 +23,7 @@ public class Person extends AbstractEntity<Person> {
         super();
     }
 
+
     public Person(String firstname, String lastname, Date birthdate) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -83,6 +84,7 @@ public class Person extends AbstractEntity<Person> {
 
     @Override
     public Person fromJSONString(String jsonString) {
+        System.out.println(jsonString);
         Person person = super.fromJSONString(jsonString, new Person());
         try {
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(jsonString);
