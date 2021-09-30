@@ -5,6 +5,8 @@ import ch.zli.m223.rest.dao.CityDAO;
 import ch.zli.m223.rest.dao.impl.CityDAOImpl;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.view.node.NumberTextField;
+import ch.zli.m223.view.tab.overview.CityOverviewTab;
+import ch.zli.m223.view.tab.overview.PersonOverviewTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -30,7 +32,7 @@ public class NewCityTab extends AbstractTab {
     }
 
     @Override
-    void initGUI() {
+    public void initGUI() {
         BorderPane content = new BorderPane();
         setContent(content);
         VBox form = new VBox();
@@ -78,8 +80,9 @@ public class NewCityTab extends AbstractTab {
         city.setName(name);
         city.setZip(zip);
         city.setUser(Model.getInstance().getUser());
-        CityDAO cityDAO = new CityDAOImpl();
-        cityDAO.create(city);
+        new CityDAOImpl().create(city);
+        getTabPane().getTabs().add(new CityOverviewTab("Citites"));
+        getTabPane().getTabs().remove(this);
     }
 
 }

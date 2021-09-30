@@ -5,6 +5,7 @@ import ch.zli.m223.rest.dao.impl.PersonDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.Person;
 import ch.zli.m223.rest.data.User;
+import ch.zli.m223.view.tab.overview.PersonOverviewTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -34,7 +35,7 @@ public class NewPersonTab extends AbstractTab {
     }
 
     @Override
-    void initGUI() {
+    public void initGUI() {
         BorderPane content = new BorderPane();
         setContent(content);
         VBox form = new VBox();
@@ -115,7 +116,8 @@ public class NewPersonTab extends AbstractTab {
         person.setUser(user);
         person.setBirthdate(birthdate);
         new PersonDAOImpl().create(person);
-
+        getTabPane().getTabs().add(new PersonOverviewTab("Persons"));
+        getTabPane().getTabs().remove(this);
     }
 
 

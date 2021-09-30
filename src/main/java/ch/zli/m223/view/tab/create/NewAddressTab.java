@@ -6,6 +6,9 @@ import ch.zli.m223.rest.dao.impl.AddressDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.rest.data.User;
+import ch.zli.m223.view.tab.overview.AddressOverviewTab;
+import ch.zli.m223.view.tab.overview.OverviewTab;
+import ch.zli.m223.view.tab.overview.PersonOverviewTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -32,7 +35,7 @@ public class NewAddressTab extends AbstractTab {
     }
 
     @Override
-    void initGUI() {
+    public void initGUI() {
         BorderPane content = new BorderPane();
         setContent(content);
         VBox form = new VBox();
@@ -108,5 +111,7 @@ public class NewAddressTab extends AbstractTab {
         System.out.println(address);
         new AddressDAOImpl().create(address);
         Model.getInstance().update();
+        getTabPane().getTabs().add(new AddressOverviewTab("Addresses"));
+        getTabPane().getTabs().remove(this);
     }
 }

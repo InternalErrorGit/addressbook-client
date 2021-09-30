@@ -14,5 +14,5 @@ public abstract class AbstractTab extends Tab {
         initGUI();
     }
 
-    abstract void initGUI();
+    public abstract void initGUI();
 }
