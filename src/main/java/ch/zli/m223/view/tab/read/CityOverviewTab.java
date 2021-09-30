@@ -1,10 +1,8 @@
-package ch.zli.m223.view.tab.overview;
+package ch.zli.m223.view.tab.read;
 
 import ch.zli.m223.model.Model;
 import ch.zli.m223.rest.data.City;
-import ch.zli.m223.rest.data.Person;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -13,11 +11,12 @@ import javafx.scene.control.TableColumn;
  * Project: addressbookclient
  */
 public class CityOverviewTab extends AbstractOverviewTab<City> {
-    public CityOverviewTab(String s) {
-        super(s);
+    public CityOverviewTab() {
+        super("Cities");
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void initGUI() {
         super.initGUI();
         Model.getInstance().update();
@@ -29,8 +28,4 @@ public class CityOverviewTab extends AbstractOverviewTab<City> {
         tableView.getColumns().addAll(rowName, rowZip);
     }
 
-    @Override
-    void update(ActionEvent actionEvent) {
-
-    }
 }

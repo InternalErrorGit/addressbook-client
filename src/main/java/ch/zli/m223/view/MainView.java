@@ -1,5 +1,6 @@
 package ch.zli.m223.view;
 
+import ch.zli.m223.Util;
 import ch.zli.m223.model.Model;
 import ch.zli.m223.view.tab.create.AddressNewTab;
 import ch.zli.m223.view.tab.create.CityNewTab;
@@ -7,13 +8,13 @@ import ch.zli.m223.view.tab.create.PersonNewTab;
 import ch.zli.m223.view.tab.delete.AddressDeleteTab;
 import ch.zli.m223.view.tab.delete.CityDeleteTab;
 import ch.zli.m223.view.tab.delete.PersonDeleteTab;
-import ch.zli.m223.view.tab.edit.AddressEditTab;
-import ch.zli.m223.view.tab.edit.CityEditTab;
-import ch.zli.m223.view.tab.edit.PersonEditTab;
-import ch.zli.m223.view.tab.overview.AddressOverviewTab;
-import ch.zli.m223.view.tab.overview.CityOverviewTab;
-import ch.zli.m223.view.tab.overview.OverviewTab;
-import ch.zli.m223.view.tab.overview.PersonOverviewTab;
+import ch.zli.m223.view.tab.read.AddressOverviewTab;
+import ch.zli.m223.view.tab.read.CityOverviewTab;
+import ch.zli.m223.view.tab.read.OverviewTab;
+import ch.zli.m223.view.tab.read.PersonOverviewTab;
+import ch.zli.m223.view.tab.update.AddressEditTab;
+import ch.zli.m223.view.tab.update.CityEditTab;
+import ch.zli.m223.view.tab.update.PersonEditTab;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -25,10 +26,10 @@ import javafx.scene.layout.VBox;
  */
 public class MainView extends VBox {
 
-    TabPane tabPane;
+    private final TabPane tabPane;
 
     public MainView() {
-        setPrefSize(960, 540);
+        setPrefSize(900, 600);
         {
             MenuBar menuBar = new MenuBar();
             {
@@ -115,9 +116,16 @@ public class MainView extends VBox {
         {
             tabPane = new TabPane();
             tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
-            tabPane.setPrefSize(960, 515);
+            tabPane.setPrefSize(Util.maxWidth, Util.maxHeight);
             getChildren().add(tabPane);
         }
+
+        actionAddressOverview(null);
+        actionAllOverview(null);
+        actionCityOverview(null);
+        actionPersonOverview(null);
+
+
     }
 
     /**
@@ -139,19 +147,19 @@ public class MainView extends VBox {
      * Overview tabs
      */
     private void actionAllOverview(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new OverviewTab("Overview"));
+        tabPane.getTabs().add(new OverviewTab());
     }
 
     private void actionPersonOverview(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new PersonOverviewTab("People"));
+        tabPane.getTabs().add(new PersonOverviewTab());
     }
 
     private void actionAddressOverview(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new AddressOverviewTab("Addresses"));
+        tabPane.getTabs().add(new AddressOverviewTab());
     }
 
     private void actionCityOverview(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new CityOverviewTab("Cities"));
+        tabPane.getTabs().add(new CityOverviewTab());
     }
 
 
@@ -173,15 +181,15 @@ public class MainView extends VBox {
 
 
     private void actionNewAddress(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new AddressNewTab("New Address"));
+        tabPane.getTabs().add(new AddressNewTab());
     }
 
     private void actionNewCity(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new CityNewTab("New City"));
+        tabPane.getTabs().add(new CityNewTab());
     }
 
     private void actionNewPerson(ActionEvent actionEvent) {
-        tabPane.getTabs().add(new PersonNewTab("New Person"));
+        tabPane.getTabs().add(new PersonNewTab());
     }
 
     private void actionDumpLog(ActionEvent actionEvent) {

@@ -10,7 +10,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Util {
     public static final String rootStyle = "-fx-background-color: #DDDDDD; -fx-border-color: black";
-
+    public static final double maxWidth = 900;
+    public static final double maxHeight = 600;
 
 
     public static String hash(String input) {

@@ -1,9 +1,8 @@
-package ch.zli.m223.view.tab.overview;
+package ch.zli.m223.view.tab.read;
 
 import ch.zli.m223.model.Model;
 import ch.zli.m223.rest.data.Person;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -13,16 +12,16 @@ import javafx.scene.control.TableColumn;
  */
 public class PersonOverviewTab extends AbstractOverviewTab<Person> {
 
-    public PersonOverviewTab(String s) {
-        super(s);
+    public PersonOverviewTab() {
+        super("People");
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void initGUI() {
         super.initGUI();
         Model.getInstance().update();
         tableView.setItems(Model.getInstance().people);
-
         TableColumn<Person, String> rowFirstname = new TableColumn<>("Firstname");
         rowFirstname.setCellValueFactory(personStringCellDataFeatures -> new SimpleStringProperty(personStringCellDataFeatures.getValue().getFirstname()));
         TableColumn<Person, String> rowLastname = new TableColumn<>("Lastname");
@@ -34,8 +33,4 @@ public class PersonOverviewTab extends AbstractOverviewTab<Person> {
         tableView.getColumns().addAll(rowFirstname, rowLastname, rowBirthdate, rowAddress);
     }
 
-    @Override
-    void update(ActionEvent actionEvent) {
-
-    }
 }

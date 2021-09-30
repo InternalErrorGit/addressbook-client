@@ -1,7 +1,6 @@
-package ch.zli.m223.view.tab.edit;
+package ch.zli.m223.view.tab.update;
 
 import ch.zli.m223.model.Model;
-import ch.zli.m223.rest.dao.impl.PersonDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.Person;
 import javafx.geometry.Pos;

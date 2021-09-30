@@ -1,10 +1,10 @@
-package ch.zli.m223.view.tab.edit;
+package ch.zli.m223.view.tab.update;
 
 import ch.zli.m223.model.Model;
 import ch.zli.m223.rest.dao.impl.CityDAOImpl;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.view.node.NumberTextField;
-import ch.zli.m223.view.tab.overview.CityOverviewTab;
+import ch.zli.m223.view.tab.read.CityOverviewTab;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -71,6 +71,6 @@ public class CityEditTab extends AbstractEditTab<City> {
         city.setName(inputName.getText());
         city.setZip(inputZip.getNumber().intValue());
         new CityDAOImpl().update(city);
-        getTabPane().getTabs().add(new CityOverviewTab("Cities"));
+        getTabPane().getTabs().add(new CityOverviewTab());
     }
 }

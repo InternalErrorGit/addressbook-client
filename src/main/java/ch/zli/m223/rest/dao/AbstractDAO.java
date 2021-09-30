@@ -69,8 +69,6 @@ public interface AbstractDAO<T extends AbstractEntity<T>> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
 

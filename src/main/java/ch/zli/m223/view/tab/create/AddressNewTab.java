@@ -5,15 +5,9 @@ import ch.zli.m223.rest.dao.impl.AddressDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.rest.data.User;
-import ch.zli.m223.view.tab.AbstractTab;
-import ch.zli.m223.view.tab.overview.AddressOverviewTab;
+import ch.zli.m223.view.tab.read.AddressOverviewTab;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.util.Callback;
 
 /**
@@ -21,94 +15,63 @@ import javafx.util.Callback;
  * @version 29.09.2021
  * Project: addressbookclient
  */
-public class AddressNewTab extends AbstractTab {
+public class AddressNewTab extends AbstractNewTab {
 
     private TextField inputHouseNumber;
     private TextField inputStreet;
     private ComboBox<City> cities;
 
-    public AddressNewTab(String s) {
-        super(s);
+    public AddressNewTab() {
+        super("Create Address");
     }
 
     @Override
     public void initGUI() {
-        BorderPane content = new BorderPane();
-        setContent(content);
-        VBox form = new VBox();
-        form.setPrefWidth(300);
-        form.setMaxWidth(300);
-        form.setMinWidth(300);
-        form.setSpacing(5);
-
-        Label title = new Label("Create a City");
-        title.setFont(new Font("System Bold", 22));
-        form.getChildren().add(title);
-
-        Label street = new Label("Street");
-        form.getChildren().add(street);
+        super.initGUI();
+        form.getChildren().add(new Label("Street"));
         inputStreet = new TextField();
         form.getChildren().add(inputStreet);
-        Label houseNumber = new Label("House number");
-        form.getChildren().add(houseNumber);
+        form.getChildren().add(new Label("House number"));
         inputHouseNumber = new TextField();
         form.getChildren().add(inputHouseNumber);
-
-         cities = new ComboBox<>();
+        cities = new ComboBox<>();
+        form.getChildren().add(new Label("City"));
+        form.getChildren().add(cities);
         Model.getInstance().update();
         cities.setItems(Model.getInstance().cities);
         cities.setCellFactory(new Callback<ListView<City>, ListCell<City>>() {
             @Override
             public ListCell<City> call(ListView<City> cityListView) {
-                return new ListCell<City>(){
+                return new ListCell<City>() {
                     @Override
                     protected void updateItem(City city, boolean b) {
                         super.updateItem(city, b);
-                        if (city == null || b){
+                        if (city == null || b) {
                             setGraphic(null);
-                        }else{
+                        } else {
                             setText(city.toString());
                         }
                     }
                 };
             }
         });
-
-        form.getChildren().add(cities);
-
-        Button save = new Button("Submit");
-        save.setOnAction(this::actionSave);
-        Button cancel = new Button("Cancel");
-        cancel.setOnAction(this::actionCancel);
-
-        HBox hBox = new HBox();
-        hBox.setSpacing(5);
-        hBox.getChildren().addAll(save, cancel);
-        form.getChildren().add(hBox);
-
-        content.setPadding(new Insets(10, 10, 10, 10));
-        content.setCenter(form);
+        addButtons();
     }
 
-    private void actionCancel(ActionEvent actionEvent) {
-        getTabPane().getTabs().remove(this);
-    }
-
-    private void actionSave(ActionEvent actionEvent) {
+    @Override
+    protected void actionSave(ActionEvent actionEvent) {
         String street = inputStreet.getText();
         String houseNumber = inputHouseNumber.getText();
         City city = cities.getValue();
         User user = Model.getInstance().getUser();
-
         Address address = new Address();
         address.setCity(city);
         address.setUser(user);
         address.setStreet(street);
         address.setHouseNumber(houseNumber);
-        System.out.println(address);
         new AddressDAOImpl().create(address);
         Model.getInstance().update();
-        getTabPane().getTabs().add(new AddressOverviewTab("Addresses"));
+        getTabPane().getTabs().add(new AddressOverviewTab());
         getTabPane().getTabs().remove(this);
     }
 }

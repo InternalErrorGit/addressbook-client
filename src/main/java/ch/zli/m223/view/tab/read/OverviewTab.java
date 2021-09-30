@@ -1,9 +1,8 @@
-package ch.zli.m223.view.tab.overview;
+package ch.zli.m223.view.tab.read;
 
 import ch.zli.m223.model.Model;
 import ch.zli.m223.view.node.TableObject;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -13,11 +12,12 @@ import javafx.scene.control.TableColumn;
  */
 public class OverviewTab extends AbstractOverviewTab<TableObject> {
 
-    public OverviewTab(String s) {
-        super(s);
+    public OverviewTab() {
+        super("Overview");
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void initGUI() {
         super.initGUI();
         Model.getInstance().update();
@@ -55,7 +55,6 @@ public class OverviewTab extends AbstractOverviewTab<TableObject> {
             colAddressHouseNumber.setCellValueFactory(v -> v.getValue().getAddress() == null ? new SimpleStringProperty("") : new SimpleStringProperty("" + v.getValue().getAddress().getHouseNumber()));
             colAddress.getColumns().addAll(colAddressId, colAddressCreateDate, colAddressUpdateDate, colAddressUsername, colAddressStreet, colAddressHouseNumber);
             tableView.getColumns().add(colAddress);
-
         }
         {
             TableColumn<TableObject,String> colCity = new TableColumn<>("City");
@@ -71,16 +70,9 @@ public class OverviewTab extends AbstractOverviewTab<TableObject> {
             colCityName.setCellValueFactory(v -> v.getValue().getCity() == null ? new SimpleStringProperty("") : new SimpleStringProperty("" + v.getValue().getCity().getName()));
             TableColumn<TableObject, String> colCityZip = new TableColumn<>("Zip");
             colCityZip.setCellValueFactory(v -> v.getValue().getCity() == null ? new SimpleStringProperty("") : new SimpleStringProperty("" + v.getValue().getCity().getZip()));
-
             colCity.getColumns().addAll(colCityId, colCityCreateDate, colCityUpdateDate, colCityUsername, colCityName, colCityZip);
             tableView.getColumns().add(colCity);
         }
     }
-
-    @Override
-    void update(ActionEvent actionEvent) {
-
-    }
-
 
 }

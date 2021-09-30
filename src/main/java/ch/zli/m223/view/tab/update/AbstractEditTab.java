@@ -1,4 +1,4 @@
-package ch.zli.m223.view.tab.edit;
+package ch.zli.m223.view.tab.update;
 
 import ch.zli.m223.view.tab.AbstractTab;
 import javafx.event.ActionEvent;

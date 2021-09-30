@@ -1,10 +1,10 @@
-package ch.zli.m223.view.tab.edit;
+package ch.zli.m223.view.tab.update;
 
 import ch.zli.m223.model.Model;
 import ch.zli.m223.rest.dao.impl.AddressDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.City;
-import ch.zli.m223.view.tab.overview.AddressOverviewTab;
+import ch.zli.m223.view.tab.read.AddressOverviewTab;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -89,6 +89,6 @@ public class AddressEditTab extends AbstractEditTab<Address> {
         address.setHouseNumber(inputHouseNumber.getText());
         address.setCity(inputCity.getValue());
         new AddressDAOImpl().update(address);
-        getTabPane().getTabs().add(new AddressOverviewTab("Addresses"));
+        getTabPane().getTabs().add(new AddressOverviewTab());
     }
 }
