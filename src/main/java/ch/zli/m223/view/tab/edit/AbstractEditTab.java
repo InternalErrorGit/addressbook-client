@@ -1,10 +1,9 @@
 package ch.zli.m223.view.tab.edit;
 
-import ch.zli.m223.view.tab.create.AbstractTab;
+import ch.zli.m223.view.tab.AbstractTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.Optional;
@@ -32,7 +31,8 @@ public abstract class AbstractEditTab<T> extends AbstractTab {
         entries = new ComboBox<>();
         entries.setOnAction(actionEvent -> {
             selectedEntry = entries.getValue();
-            updateForm();
+            if (selectedEntry != null)
+                updateForm();
         });
         vBox.getChildren().add(entries);
         setContent(vBox);

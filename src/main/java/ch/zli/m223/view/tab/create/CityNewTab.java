@@ -1,12 +1,11 @@
 package ch.zli.m223.view.tab.create;
 
 import ch.zli.m223.model.Model;
-import ch.zli.m223.rest.dao.CityDAO;
 import ch.zli.m223.rest.dao.impl.CityDAOImpl;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.view.node.NumberTextField;
+import ch.zli.m223.view.tab.AbstractTab;
 import ch.zli.m223.view.tab.overview.CityOverviewTab;
-import ch.zli.m223.view.tab.overview.PersonOverviewTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -22,12 +21,12 @@ import javafx.scene.text.Font;
  * @version 29.09.2021
  * Project: addressbookclient
  */
-public class NewCityTab extends AbstractTab {
+public class CityNewTab extends AbstractTab {
 
     private TextField inputName;
     private NumberTextField inputZip;
 
-    public NewCityTab(String s) {
+    public CityNewTab(String s) {
         super(s);
     }
 

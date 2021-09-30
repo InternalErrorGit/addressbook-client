@@ -9,6 +9,10 @@ import java.security.NoSuchAlgorithmException;
  * Project: addressbookclient
  */
 public class Util {
+    public static final String rootStyle = "-fx-background-color: #DDDDDD; -fx-border-color: black";
+
+
+
     public static String hash(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");

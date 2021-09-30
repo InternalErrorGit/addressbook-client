@@ -1,9 +1,9 @@
 package ch.zli.m223.view;
 
 import ch.zli.m223.model.Model;
-import ch.zli.m223.view.tab.create.NewAddressTab;
-import ch.zli.m223.view.tab.create.NewCityTab;
-import ch.zli.m223.view.tab.create.NewPersonTab;
+import ch.zli.m223.view.tab.create.AddressNewTab;
+import ch.zli.m223.view.tab.create.CityNewTab;
+import ch.zli.m223.view.tab.create.PersonNewTab;
 import ch.zli.m223.view.tab.delete.AddressDeleteTab;
 import ch.zli.m223.view.tab.delete.CityDeleteTab;
 import ch.zli.m223.view.tab.delete.PersonDeleteTab;
@@ -38,7 +38,7 @@ public class MainView extends VBox {
                 application.getItems().add(logout);
                 application.getItems().add(new SeparatorMenuItem());
                 MenuItem quit = new MenuItem("Quit");
-                logout.setOnAction(this::actionQuit);
+                quit.setOnAction(this::actionQuit);
                 application.getItems().add(quit);
                 menuBar.getMenus().add(application);
             } // APPLICATION
@@ -124,58 +124,36 @@ public class MainView extends VBox {
      * Delete Tabs
      */
     private void actionDeleteCity(ActionEvent actionEvent) {
-        CityDeleteTab tab = new CityDeleteTab("Delete City");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new CityDeleteTab("Delete City"));
     }
 
     private void actionDeleteAddress(ActionEvent actionEvent) {
-        AddressDeleteTab tab = new AddressDeleteTab("Delete Address");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new AddressDeleteTab("Delete Address"));
     }
 
     private void actionDeletePerson(ActionEvent actionEvent) {
-        PersonDeleteTab tab = new PersonDeleteTab("Delete Person");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new PersonDeleteTab("Delete Person"));
     }
 
     /**
      * Overview tabs
      */
     private void actionAllOverview(ActionEvent actionEvent) {
-        OverviewTab tab = new OverviewTab("Overview");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new OverviewTab("Overview"));
     }
 
     private void actionPersonOverview(ActionEvent actionEvent) {
-        PersonOverviewTab tab = new PersonOverviewTab("People");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new PersonOverviewTab("People"));
     }
 
     private void actionAddressOverview(ActionEvent actionEvent) {
-        AddressOverviewTab tab = new AddressOverviewTab("Addresses");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new AddressOverviewTab("Addresses"));
     }
 
     private void actionCityOverview(ActionEvent actionEvent) {
-        CityOverviewTab tab = new CityOverviewTab("Cities");
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new CityOverviewTab("Cities"));
     }
 
-    private void actionDumpLog(ActionEvent actionEvent) {
-        throw new NullPointerException();
-    }
-
-    private void actionReportABug(ActionEvent actionEvent) {
-        throw new NullPointerException();
-    }
-
-    private void actionExport(ActionEvent actionEvent) {
-        throw new NullPointerException();
-    }
-
-    private void actionDelete(ActionEvent actionEvent) {
-        throw new NullPointerException();
-    }
 
     /**
      * Edit tabs
@@ -193,32 +171,37 @@ public class MainView extends VBox {
         tabPane.getTabs().add(new PersonEditTab("Edit Person"));
     }
 
+
+    private void actionNewAddress(ActionEvent actionEvent) {
+        tabPane.getTabs().add(new AddressNewTab("New Address"));
+    }
+
+    private void actionNewCity(ActionEvent actionEvent) {
+        tabPane.getTabs().add(new CityNewTab("New City"));
+    }
+
+    private void actionNewPerson(ActionEvent actionEvent) {
+        tabPane.getTabs().add(new PersonNewTab("New Person"));
+    }
+
+    private void actionDumpLog(ActionEvent actionEvent) {
+        throw new NullPointerException();
+    }
+
+    private void actionReportABug(ActionEvent actionEvent) {
+        throw new NullPointerException();
+    }
+
     private void actionImport(ActionEvent actionEvent) {
         throw new NullPointerException();
     }
 
-    private void actionNewAddress(ActionEvent actionEvent) {
-        NewAddressTab tab = new NewAddressTab("New Address");
-        tabPane.getTabs().add(tab);
-    }
-
-    private void actionNewCity(ActionEvent actionEvent) {
-        NewCityTab tab = new NewCityTab("New City");
-        tabPane.getTabs().add(tab);
-    }
-
-    private void actionNewPerson(ActionEvent actionEvent) {
-        NewPersonTab tab = new NewPersonTab("New Person");
-        tabPane.getTabs().add(tab);
-    }
-
-    private void actionOverview(ActionEvent actionEvent) {
-        OverviewTab tab = new OverviewTab("Overview");
-        tabPane.getTabs().add(tab);
+    private void actionExport(ActionEvent actionEvent) {
+        throw new NullPointerException();
     }
 
     private void actionQuit(ActionEvent actionEvent) {
-        System.exit(0);
+        System.exit(420);
     }
 
     private void actionLogout(ActionEvent actionEvent) {

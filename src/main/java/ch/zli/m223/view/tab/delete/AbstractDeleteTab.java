@@ -1,7 +1,7 @@
 package ch.zli.m223.view.tab.delete;
 
 import ch.zli.m223.rest.data.AbstractEntity;
-import ch.zli.m223.view.tab.create.AbstractTab;
+import ch.zli.m223.view.tab.AbstractTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;

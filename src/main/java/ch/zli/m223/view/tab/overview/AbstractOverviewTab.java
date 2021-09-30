@@ -1,6 +1,6 @@
 package ch.zli.m223.view.tab.overview;
 
-import ch.zli.m223.view.tab.create.AbstractTab;
+import ch.zli.m223.view.tab.AbstractTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;

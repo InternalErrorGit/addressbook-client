@@ -81,10 +81,8 @@ public class LoginView extends VBox {
             progressIndicator.setVisible(false);
             return;
         }
-
         String token = container[0];
         Long id = Long.valueOf(container[1]);
-        System.out.println(token);
         Model.getInstance().setToken(token);
         Model.getInstance().setUser(userDAO.findById(id));
         getScene().setRoot(new MainView());

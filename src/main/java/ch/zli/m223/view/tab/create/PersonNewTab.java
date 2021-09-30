@@ -5,6 +5,7 @@ import ch.zli.m223.rest.dao.impl.PersonDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.Person;
 import ch.zli.m223.rest.data.User;
+import ch.zli.m223.view.tab.AbstractTab;
 import ch.zli.m223.view.tab.overview.PersonOverviewTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -22,7 +23,7 @@ import java.sql.Date;
  * @version 29.09.2021
  * Project: addressbookclient
  */
-public class NewPersonTab extends AbstractTab {
+public class PersonNewTab extends AbstractTab {
 
 
     private TextField inputLastName;
@@ -30,7 +31,7 @@ public class NewPersonTab extends AbstractTab {
     private ComboBox<Address> addresses;
     private DatePicker inputBirthdate;
 
-    public NewPersonTab(String s) {
+    public PersonNewTab(String s) {
         super(s);
     }
 

@@ -4,6 +4,7 @@ import ch.zli.m223.model.Model;
 import ch.zli.m223.rest.dao.impl.AddressDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.City;
+import ch.zli.m223.view.tab.overview.AddressOverviewTab;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -62,7 +63,6 @@ public class AddressEditTab extends AbstractEditTab<Address> {
         vBox.getChildren().add(new Label("City"));
         vBox.getChildren().add(inputCity);
 
-
         Button submit = new Button("Apply");
         submit.setOnAction(this::actionSubmit);
         Button cancel = new Button("Cancel");
@@ -87,7 +87,8 @@ public class AddressEditTab extends AbstractEditTab<Address> {
         Address address = selectedEntry;
         address.setStreet(inputStreet.getText());
         address.setHouseNumber(inputHouseNumber.getText());
-        address.setCity(cities.getValue());
+        address.setCity(inputCity.getValue());
         new AddressDAOImpl().update(address);
+        getTabPane().getTabs().add(new AddressOverviewTab("Addresses"));
     }
 }

@@ -1,14 +1,12 @@
 package ch.zli.m223.view.tab.create;
 
 import ch.zli.m223.model.Model;
-import ch.zli.m223.rest.dao.AddressDAO;
 import ch.zli.m223.rest.dao.impl.AddressDAOImpl;
 import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.rest.data.User;
+import ch.zli.m223.view.tab.AbstractTab;
 import ch.zli.m223.view.tab.overview.AddressOverviewTab;
-import ch.zli.m223.view.tab.overview.OverviewTab;
-import ch.zli.m223.view.tab.overview.PersonOverviewTab;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -17,20 +15,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 
 /**
  * @author P. Gatzka
  * @version 29.09.2021
  * Project: addressbookclient
  */
-public class NewAddressTab extends AbstractTab {
+public class AddressNewTab extends AbstractTab {
 
     private TextField inputHouseNumber;
     private TextField inputStreet;
     private ComboBox<City> cities;
 
-    public NewAddressTab(String s) {
+    public AddressNewTab(String s) {
         super(s);
     }
 
