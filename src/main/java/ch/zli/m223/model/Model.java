@@ -7,11 +7,9 @@ import ch.zli.m223.rest.data.Address;
 import ch.zli.m223.rest.data.City;
 import ch.zli.m223.rest.data.Person;
 import ch.zli.m223.rest.data.User;
+import ch.zli.m223.view.node.TableObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * @author P. Gatzka
@@ -26,6 +24,7 @@ public class Model {
     public final ObservableList<City> cities = FXCollections.observableArrayList();
     public final ObservableList<Person> people = FXCollections.observableArrayList();
     public final ObservableList<Address> addresses = FXCollections.observableArrayList();
+    public final ObservableList<TableObject> tableObjects = FXCollections.observableArrayList();
 
     private Model() {
 
@@ -37,6 +36,20 @@ public class Model {
         people.clear();
         cities.addAll(new CityDAOImpl().findAll());
         addresses.addAll(new AddressDAOImpl().findAll());
+        people.addAll(new PersonDAOImpl().findAll());
+        tableObjects.clear();
+        people.forEach(p -> {
+            TableObject tableObject = new TableObject(p, p.getAddress(), p.getAddress().getCity());
+            tableObjects.add(tableObject);
+        });
+        addresses.forEach(p -> {
+            TableObject tableObject = new TableObject(null, p, p.getCity());
+            tableObjects.add(tableObject);
+        });
+        cities.forEach(p -> {
+            TableObject tableObject = new TableObject(null, null, p);
+            tableObjects.add(tableObject);
+        });
     }
 
     public static Model getInstance() {
