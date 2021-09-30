@@ -49,6 +49,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User update(User entity) {
+        return null;
+    }
+
+    @Override
     public synchronized String[] login(User user) {
         try {
             URL url = new URL(getUrl() + "/login");

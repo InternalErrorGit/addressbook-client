@@ -19,9 +19,8 @@ import java.util.List;
  */
 public interface AbstractDAO<T extends AbstractEntity<T>> {
 
-    T create(T object);
+    // T create(T object);
 
-    /*
     default T create(T object) {
         try {
             URL url = new URL(getUrl());
@@ -49,7 +48,31 @@ public interface AbstractDAO<T extends AbstractEntity<T>> {
         return null;
     }
 
-     */
+    T update(T entity);
+
+    default void delete(Long id) {
+        try {
+            URL url = new URL(getUrl() + "/" + id);
+            HttpURLConnection c = (HttpURLConnection) url.openConnection();
+            c.setRequestMethod("DELETE");
+            c.setRequestProperty("Content-Type", "application/json");
+            c.setRequestProperty("Accept", "application/json");
+            c.setRequestProperty("Authorization", "Bearer " + Model.getInstance().getToken());
+            c.setDoOutput(true);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(c.getInputStream(), StandardCharsets.UTF_8));
+            StringBuilder response = new StringBuilder();
+            String responseLine;
+            while ((responseLine = reader.readLine()) != null) {
+                response.append(responseLine);
+            }
+            System.out.println(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     String getUrl();
 
@@ -57,6 +80,5 @@ public interface AbstractDAO<T extends AbstractEntity<T>> {
 
     List<T> findAll();
 
-    void delete(Long id);
 
 }

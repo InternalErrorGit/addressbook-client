@@ -3,7 +3,6 @@ package ch.zli.m223.rest.dao.impl;
 import ch.zli.m223.model.Model;
 import ch.zli.m223.rest.dao.AddressDAO;
 import ch.zli.m223.rest.data.Address;
-import ch.zli.m223.rest.data.City;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,7 +11,6 @@ import org.json.simple.parser.ParseException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -26,31 +24,9 @@ import java.util.List;
  */
 public class AddressDAOImpl implements AddressDAO {
 
+
     @Override
-    public Address create(Address object) {
-        try {
-            URL url = new URL(getUrl());
-            HttpURLConnection c = (HttpURLConnection) url.openConnection();
-            c.setRequestMethod("POST");
-            c.setRequestProperty("Content-Type", "application/json");
-            c.setRequestProperty("Accept", "application/json");
-            c.setRequestProperty("Authorization", "Bearer " + Model.getInstance().getToken());
-            c.setDoOutput(true);
-            String json = object.toJSONObject(false).toJSONString();
-            System.out.println(json);
-            OutputStream os = c.getOutputStream();
-            byte[] input = json.getBytes(StandardCharsets.UTF_8);
-            os.write(input, 0, input.length);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(c.getInputStream(), StandardCharsets.UTF_8));
-            StringBuilder response = new StringBuilder();
-            String responseLine;
-            while ((responseLine = reader.readLine()) != null) {
-                response.append(responseLine);
-            }
-            return object.fromJSONString(response.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Address update(Address entity) {
         return null;
     }
 
@@ -90,8 +66,4 @@ public class AddressDAOImpl implements AddressDAO {
         return addresses;
     }
 
-    @Override
-    public void delete(Long id) {
-
-    }
 }

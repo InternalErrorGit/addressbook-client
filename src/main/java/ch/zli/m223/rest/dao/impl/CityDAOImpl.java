@@ -11,7 +11,6 @@ import org.json.simple.parser.ParseException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -26,29 +25,7 @@ import java.util.List;
 public class CityDAOImpl implements CityDAO {
 
     @Override
-    public City create(City object) {
-        try {
-            URL url = new URL(getUrl());
-            HttpURLConnection c = (HttpURLConnection) url.openConnection();
-            c.setRequestMethod("POST");
-            c.setRequestProperty("Content-Type", "application/json");
-            c.setRequestProperty("Accept", "application/json");
-            c.setRequestProperty("Authorization", "Bearer " + Model.getInstance().getToken());
-            c.setDoOutput(true);
-            String json = object.toJSONObject(false).toJSONString();
-            OutputStream os = c.getOutputStream();
-            byte[] input = json.getBytes(StandardCharsets.UTF_8);
-            os.write(input, 0, input.length);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(c.getInputStream(), StandardCharsets.UTF_8));
-            StringBuilder response = new StringBuilder();
-            String responseLine;
-            while ((responseLine = reader.readLine()) != null) {
-                response.append(responseLine);
-            }
-            return object.fromJSONString(response.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public City update(City entity) {
         return null;
     }
 
@@ -88,8 +65,4 @@ public class CityDAOImpl implements CityDAO {
         return cities;
     }
 
-    @Override
-    public void delete(Long id) {
-
-    }
 }
